@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Button} from 'react-na
 import * as firebase from "firebase";
 import QRCode from 'react-native-qrcode';
 import {withNavigation} from 'react-navigation'
+
 class HomeScreen extends Component {
 
   constructor(props){
@@ -28,7 +29,6 @@ class HomeScreen extends Component {
   }
 
   render() {
-    console.log(firebase.auth().currentUser.displayName)
     return (
       <View style={styles.container}>
         <View style={{height: 80, backgroundColor: 'brown'}}>
@@ -56,11 +56,11 @@ class HomeScreen extends Component {
           size={300}
           bgColor='black'
           fgColor='white'/>
-    <Text style={{textAlign: 'center', margin: 8, width: 350}}>Instructions: Hold this a few inches from the scanner. Add funds by clicking the button below.</Text>
-  <TouchableOpacity style={{backgroundColor: '#3ede5b', padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
-      <Text style={{color: 'white', padding: 8}}>Add Funds</Text>
-    </TouchableOpacity>
-  </View>
+        <Text style={{textAlign: 'center', margin: 8, width: 350}}>Instructions: Hold this a few inches from the scanner. Add funds by clicking the button below.</Text>
+        <TouchableOpacity style={{backgroundColor: '#3ede5b', padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
+          <Text style={{color: 'white', padding: 8}}>Add Funds</Text>
+        </TouchableOpacity>
+        </View>
       </View>
     );
   }
