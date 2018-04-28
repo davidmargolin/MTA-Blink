@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-=======
 import { StyleSheet, Text, Image, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
->>>>>>> origin/LoginScreen
 import * as firebase from "firebase";
 
 
@@ -37,14 +33,12 @@ export default class LoginScreen extends Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
-               placeholderTextColor = "#605b6d"
                autoCapitalize = "none"
                onChangeText = {this.handleEmail}/>
 
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Password"
-               placeholderTextColor = "#605b6d"
                autoCapitalize = "none"
                onChangeText = {this.handlePassword}/>
 
@@ -69,6 +63,7 @@ const styles = StyleSheet.create({
       margin: 15,
       height: 40,
       borderColor: '#c5c8cc',
+      padding: 16,
       borderWidth: 1
    },
    submitButton: {
