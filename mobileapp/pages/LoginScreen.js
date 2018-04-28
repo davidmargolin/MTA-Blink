@@ -27,6 +27,7 @@ export default class LoginScreen extends Component {
   render() {
     return (
       <View style = {styles.container}>
+        <View style = {styles.container}>
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
@@ -48,7 +49,8 @@ export default class LoginScreen extends Component {
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
-         </View>
+          </View>
+        </View>
     );
   }
 }
