@@ -76,27 +76,20 @@ class FundingScreen extends Component {
 
         <View>
           <View style={{height: 60, justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: 'black'}}>
+            <Text style={{textAlign: 'center', fontWeight: '900', fontSize: 24, color: 'gray'}}>
               Enter Amount:
             </Text>
           </View>
-          <View style={{height: 240 , width: '100%', flexDirection: 'row'}}>
-
-          <Text style={{fontSize: 100, color: 'gray', fontWeight: '600'}}>  $ </Text>
-          <TextInput
-              style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'gray', fontSize: 100, textAlign: 'center'}}
-              onChangeText={(fund_amount) => this.setState({fund_amount})}
-              value={this.state.fund_amount}
-              keyboardType="numeric"
-            />
-
+          <View style={{height: 140, width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
+            <Text style={{flex: 1, fontSize: 100, color: 'gray', fontWeight: '600'}}>  $ </Text>
+            <TextInput
+                style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'gray', fontSize: 100, textAlign: 'center'}}
+                onChangeText={(fund_amount) => this.setState({fund_amount})}
+                value={(this.state.fund_amount)}
+                keyboardType="numeric"
+              />
           </View>
           <View style={{height: 240 , width: '100%'}}>
-            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
-
-                <TouchableOpacity style={{flex: 2, height: '100%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
-                </TouchableOpacity>
-            </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
                 $10
