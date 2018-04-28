@@ -19,7 +19,7 @@ class HomeScreen extends Component {
   generateQRCode=()=>{
     var date = new Date();
     var time = date.getTime();
-    this.setState({qrcode_value: this.state.payment_type + "02" + time})
+    this.setState({qrcode_value: this.state.payment_type + firebase.auth().currentUser.uid + time})
   }
 
   componentDidMount() {
