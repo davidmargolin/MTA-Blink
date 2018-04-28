@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Button, Keyboard } from 'react-native';
 import * as firebase from "firebase";
-import {withNavigation} from 'react-navigation'
+import { withNavigation } from 'react-navigation'
 import Header from '../components/Header'
 
 class FundingScreen extends Component {
@@ -13,6 +13,14 @@ class FundingScreen extends Component {
       fund_amount: "10",
       time_amount: "Weekly"
     }
+  }
+
+  dismissEvent = event => {
+    event.preventDefault();
+    if(this.state.fund_amount.length < 1)
+      this.setState({fund_amount: "0"})
+    }
+    Keyboard.dismiss();
   }
 
   selectFundAmount=(amt)=>{
@@ -82,14 +90,18 @@ class FundingScreen extends Component {
           </View>
           <View style={{height: 140, width: '100%', flexDirection: 'row', justifyContent: 'center'}}>
             <Text style={{flex: 1, fontSize: 100, color: 'gray', fontWeight: '600'}}>  $ </Text>
-            <TextInput
-                style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'gray', fontSize: 100, textAlign: 'center'}}
-                onChangeText={(fund_amount) => this.setState({fund_amount})}
-                value={(this.state.fund_amount)}
-                keyboardType="numeric"
-              />
+            <TextInput style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'gray', fontSize: 100, textAlign: 'center'}}
+                       keyboardType="phone-pad"
+                       onChangeText={(fund_amount) => this.setState({fund_amount})}
+                       value={(this.state.fund_amount)}
+                       maxLength={3}/>
           </View>
           <View style={{height: 240 , width: '100%'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}} onPress={(event) => this.dismissEvent}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: 'black'}}>
+                Enter
+              </Text>
+            </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
                 $10
