@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import { StyleSheet, Text, Image, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
-=======
 import { StyleSheet, Text, Image, Keyboard, View, TextInput,KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
->>>>>>> 95558687d4ff6f65f4536b3a4c5bfb170c152818
 import * as firebase from "firebase";
 
 
@@ -52,15 +48,6 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-
-      <View style = {styles.container}>
-            <Image
-                resizeMode="contain"
-                style={{width: null, height: 300}}
-                source={require('../images/mta-logo.png')}
-              />
-=======
       <KeyboardAvoidingView
         style={styles.container}
         behavior="padding"
@@ -79,7 +66,6 @@ export default class LoginScreen extends Component {
                 onSubmitEditing={(event) => Keyboard.dismiss()}
                onChangeText = {(text)=>this.name=text}/>
           }
->>>>>>> 95558687d4ff6f65f4536b3a4c5bfb170c152818
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
@@ -106,25 +92,13 @@ export default class LoginScreen extends Component {
                }>
                <Text style = {styles.submitButtonText}> {this.state.newUser? "Register" : "Sign In / Register"} </Text>
             </TouchableOpacity>
-<<<<<<< HEAD
-         </View>
-=======
          </KeyboardAvoidingView>
->>>>>>> 95558687d4ff6f65f4536b3a4c5bfb170c152818
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-<<<<<<< HEAD
-    flex:1,
-      paddingTop: 23
-   },
-   input: {
-      margin: 15,
-      height: 40,
-=======
       alignItems: 'center',
       justifyContent: 'center',
       flex:1,
@@ -134,7 +108,6 @@ const styles = StyleSheet.create({
       padding: 8,
       width: '100%',
       margin: 4,
->>>>>>> 95558687d4ff6f65f4536b3a4c5bfb170c152818
       borderColor: '#c5c8cc',
       borderWidth: 1
    },
