@@ -9,8 +9,8 @@ export default class App extends Component {
   constructor(props){
     super(props)
     this.state={
-     login_status: 0,
-   }
+     login_status: -1,
+    }
   }
   componentDidMount() {
     var config = {
@@ -22,6 +22,14 @@ export default class App extends Component {
       messagingSenderId: "1081675998683"
     };
     firebase.initializeApp(config);
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({login_status: 1})
+      }else{
+        this.setState({login_status: 0})
+      }
+    })
   }
 
   render() {
