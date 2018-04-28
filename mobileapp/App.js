@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import * as firebase from "firebase";
 
-export default class App extends React.Component {
+export default class App extends Component {
+
+  componentDidMount() {
+    var config = {
+      apiKey: "AIzaSyByWpAy1yK5XrD5ENlXEIIsC5VxQOxLY7A",
+      authDomain: "mta-scanner.firebaseapp.com",
+      databaseURL: "https://mta-scanner.firebaseio.com",
+      projectId: "mta-scanner",
+      storageBucket: "mta-scanner.appspot.com",
+      messagingSenderId: "1081675998683"
+    };
+    firebase.initializeApp(config);
+  }
+
   render() {
+
+    console.log("test")
+
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Text>TestTest</Text>
       </View>
     );
   }
