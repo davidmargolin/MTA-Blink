@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, Button} from 'react-na
 import * as firebase from "firebase";
 import QRCode from 'react-native-qrcode';
 import {withNavigation} from 'react-navigation'
+import Header from '../components/Header'
 
 class HomeScreen extends Component {
 
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
   generateQRCode=()=>{
     var date = new Date();
     var time = date.getTime();
-    this.setState({qrcode_value: this.state.payment_type + firebase.auth().currentUser.uid + time})
+    this.setState({qrcode_value: this.state.payment_type.charAt(0) + firebase.auth().currentUser.uid + time})
   }
 
   componentDidMount() {
@@ -31,9 +32,7 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{height: 80, backgroundColor: 'brown'}}>
-            <Text style={{paddingTop: 25, margin: 8, color: 'white', fontSize: 25}}>MTA Scanner</Text>
-        </View>
+        <Header/>
         <View>
           <Text style={{textAlign: 'center', margin: 8, fontSize: 18}}>{firebase.auth().currentUser.displayName}</Text>
         </View>
