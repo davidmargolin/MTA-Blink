@@ -97,11 +97,11 @@ export default class FundingScreen extends Component {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: '#b1c1db', justifyContent: 'center'}}>
-            <TextInput
-              style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-              onChangeText={(fund_amount) => this.setState({fund_amount})}
-              value={this.state.fund_amount}
-            />
+              <TextInput
+                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                onChangeText={(fund_amount) => this.setState({fund_amount})}
+                value={this.state.fund_amount}
+              />
             </TouchableOpacity>
           </View>
         </View>

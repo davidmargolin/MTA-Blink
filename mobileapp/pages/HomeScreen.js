@@ -30,36 +30,33 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: this.state.payment_type == "Time" ? "#FCCC0A" : '#00A1DE'}]}>
         <View style={{height: 80, backgroundColor: 'brown'}}>
-            <Text style={{paddingTop: 25, margin: 8, color: 'white', fontSize: 25}}>MTA Scanner</Text>
+          <Text style={{paddingTop: 25, margin: 8, color: 'white', fontSize: 25}}>MTA Scanner</Text>
         </View>
-        <View>
-          <Text style={{textAlign: 'center', margin: 8, fontSize: 18}}>{firebase.auth().currentUser.displayName}</Text>
-        </View>
-        <View style={{flexDirection: 'row', height: 40 , width: '100%'}}>
-          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
+        <View style={{flexDirection: 'row', height: 60 , width: '100%'}}>
+          <TouchableOpacity style={{flex: 1, backgroundColor: '#00A1DE', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
+            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 24, color: 'black'}}>
               Value $
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Time"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: this.state.payment_type=="Time"?'white':'black'}}>
+          <TouchableOpacity style={{flex: 1, backgroundColor: "#FCCC0A", justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
+            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 24, color: 'black'}}>
               Time
             </Text>
           </TouchableOpacity>
         </View>
         <View style={{alignItems: 'center'}}>
-        <Text style={{textAlign: 'center', fontSize: 16, margin: 8}}>{this.state.payment_type=="Time"?"Monthly (Expires 12/7/2018)":"$25.00"}</Text>
-        <QRCode
-          value={this.state.qrcode_value}
-          size={300}
-          bgColor='black'
-          fgColor='white'/>
-        <Text style={{textAlign: 'center', margin: 8, width: 350}}>Instructions: Hold this a few inches from the scanner. Add funds by clicking the button below.</Text>
-        <TouchableOpacity style={{backgroundColor: '#3ede5b', padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
-          <Text style={{color: 'white', padding: 8}}>Add Funds</Text>
-        </TouchableOpacity>
+          <Text style={{textAlign: 'center', fontSize: 24, fontWeight: "bold", margin: 16}}>{this.state.payment_type=="Time"?"Monthly (Expires 12/7/2018)":"Balance: $25.00"}</Text>
+          <QRCode
+            value={this.state.qrcode_value}
+            size={225}
+            bgColor='black'
+            fgColor='white'/>
+          <Text style={{textAlign: 'center', fontSize: 24, fontWeight: "bold", margin: 20, width: 350}}>To use, hold the code a few inches from the scanner.</Text>
+          <TouchableOpacity style={{backgroundColor: 'brown', width: 300, padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
+            <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>Add Funds</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -71,6 +68,5 @@ export default withNavigation(HomeScreen);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#b1c1db',
   },
 });
