@@ -9,9 +9,19 @@ class HomeScreen extends Component {
 
   constructor(props){
     super(props)
+    this.state = {
+      balance: ""
+    }
   }
 
   _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
+
+  addBalance() {
+    var balance = firebase.database().ref('users/' + userID + '/balance');
+    balance.on('value', function(snapshot) {
+      current.setState({balance: snapshot.val()});
+    });
+  }
 
   render() {
     return (
@@ -32,6 +42,13 @@ class HomeScreen extends Component {
               placeholderColor={"darkgray"}
 
               onChange={this._onChange} />
+        <TouchableOpacity
+           style = {styles.submitButton}
+           onPress = {
+              () => this.login(this.email, this.password)
+           }>
+           <Text style = {styles.submitButtonText}> {this.state.newUser? "Register" : "Sign In / Register"} </Text>
+        </TouchableOpacity>
       </View>
     );
   }
