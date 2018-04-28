@@ -25,7 +25,6 @@ export default class App extends Component {
   }
 
   render() {
-    return (
       if (this.state.login_status == 0){
         return(
           <LoginScreen />
@@ -39,7 +38,6 @@ export default class App extends Component {
           <AppLoading/>
         )
       }
-    );
   }
 }
 
