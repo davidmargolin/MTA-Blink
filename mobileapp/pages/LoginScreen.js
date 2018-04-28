@@ -52,9 +52,9 @@ export default class LoginScreen extends Component {
             <Image
                 resizeMode="contain"
                 style={{width: '100%', height: 300}}
-                source={require('../images/mta-logo.png')}
+                source={require('../images/blink-logo-03.png')}
               />
-            <Text style={{margin: 4, textAlign: 'center'}}>{this.state.errorCode}</Text>
+            <Text style={{margin: 4, textAlign: 'center', color: 'red'}}>{this.state.errorCode}</Text>
           {this.state.newUser &&
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
@@ -99,13 +99,16 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       flex:1,
+      backgroundColor: '#222',
       padding: 40
    },
    input: {
       padding: 8,
       width: '100%',
       margin: 4,
-      borderColor: '#c5c8cc',
+      backgroundColor: '#444',
+      borderColor: '#000',
+      color: 'white',
       borderWidth: 1
    },
    submitButton: {

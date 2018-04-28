@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, StatusBar, Platform, Image, Button} from 'react-native';
 import {Constants} from 'expo'
 import {withNavigation} from 'react-navigation'
+import { Icon } from 'react-native-elements'
+import * as firebase from "firebase";
 
 class Header extends Component {
 
@@ -21,8 +23,18 @@ class Header extends Component {
               />
             </TouchableOpacity>
           }
-
+          <View style={{flexDirection: 'row', justifyContent: 'space-between', flex: 1}}>
           <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold', margin: 16}}>MTA Blink</Text>
+
+          {
+            this.props.withLogOutButton &&
+            <TouchableOpacity style={{justifyContent: 'center', alignItems: 'flex-end', flex: 1, paddingRight: 10}}
+              onPress={() => firebase.auth().signOut()}
+              >
+              <Icon name='exit-to-app' color='white' size={36}/>
+            </TouchableOpacity>
+          }
+          </View>
       </View>
     );
   }

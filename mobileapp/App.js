@@ -38,6 +38,7 @@ export default class App extends Component {
           }).then(()=>{
             console.log("Display Name Set To: " + user.displayName)
           });
+          this.setState({new_user: false})
         }
         this.setState({login_status: 1})
       }else{

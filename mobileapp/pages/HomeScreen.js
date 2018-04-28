@@ -9,14 +9,15 @@ import { Icon } from 'react-native-elements'
 class HomeScreen extends Component {
 
   constructor(props){
-    super(props)
-    this.state={
-      balance: 0,
-      time: "",
-      expiration: "",
-      payment_type: 'Time',
-    }
-  }
+   super(props)
+   this.state={
+     balance: 0,
+     time: "",
+     expiration: "",
+     payment_type: 'Time',
+   }
+   this.qrreplacer = ""
+ }
 
   switchPaymentType=(type)=>{
       this.setState({payment_type: type})
@@ -30,35 +31,37 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-     setInterval(()=>this.generateQRCode(), 5000);
-  }
-
-  componentWillMount() {
-    var current = this;
+    this.qrreplacer = setInterval(()=>this.generateQRCode(), 5000);
     var userID = firebase.auth().currentUser.uid;
     var balance = firebase.database().ref('users/' + userID + '/balance');
-    balance.on('value', function(snapshot) {
-      current.setState({balance: snapshot.val()});
+    balance.on('value', (snapshot)=> {
+      this.setState({balance: snapshot.val()});
     });
     var time = firebase.database().ref('users/' + userID + '/time');
-    time.on('value', function(snapshot) {
-      current.setState({time: snapshot.val()});
+    time.on('value', (snapshot)=> {
+      this.setState({time: snapshot.val()});
     });
     var expiration = firebase.database().ref('users/' + userID + '/expiration');
-    expiration.on('value', function(snapshot) {
-      current.setState({expiration: snapshot.val()});
+    expiration.on('value', (snapshot)=> {
+      this.setState({expiration: snapshot.val()});
     });
+   }
+
+  componentWillUnmount(){
+    clearInterval(this.qrreplacer)
   }
 
   render() {
     return (
       <View style={[styles.container, {backgroundColor: this.state.payment_type == "Time" ? "#ffd621" : '#eaeadc'}]}>
-        <Header/>
+        <Header withLogOutButton/>
         <View style={{flexDirection: 'row', marginTop: -1, height: 60 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
-            <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
-              Value $
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
+                Value $
+              </Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={{flex: 1, backgroundColor: "#ffd621", justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -75,7 +78,7 @@ class HomeScreen extends Component {
             value={this.state.qrcode_value}
             size={225}
             bgColor='black'
-            fgColor={(this.state.payment_type=="Time")?'#ffd621':'#eaeadc'}/>
+            fgColor='white'/>
           <Text style={{textAlign: 'center', fontSize: 26, fontWeight: "bold", margin: 20, width: 350}}>Please hold this code a few inches from the scanner.</Text>
           <TouchableOpacity style={{backgroundColor: 'black', width: 300, marginTop: 10, padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen', {balance: this.state.balance})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>Add Funds</Text>

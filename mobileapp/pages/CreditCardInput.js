@@ -36,6 +36,11 @@ class CreditCardInput extends Component {
       var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+30);
       expirationRef.set(nextWeek.toLocaleDateString())
     }
+    else if(time == "Yearly"){
+      var today = new Date();
+      var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+365);
+      expirationRef.set(nextWeek.toLocaleDateString())
+    }
   }
 
   purchase() {
