@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as firebase from "firebase";
-
+import {AppLoading} from 'expo';
+import Navigator from './navigation/Navigator'
+import LoginScreen from './pages/LoginScreen'
 export default class App extends Component {
 
+  constructor(props){
+    super(props)
+    this.state={
+     login_status: -1,
+   }
+  }
   componentDidMount() {
     var config = {
       apiKey: "AIzaSyByWpAy1yK5XrD5ENlXEIIsC5VxQOxLY7A",
@@ -17,13 +25,20 @@ export default class App extends Component {
   }
 
   render() {
-
-    console.log("test")
-
     return (
-      <View style={styles.container}>
-        <Text>TestTest</Text>
-      </View>
+      if (this.state.login_status == 0){
+        return(
+          <LoginScreen />
+        )
+      }else if (this.state.login_status == 1){
+        return(
+          <Navigator />
+        )
+      }else{
+        return(
+          <AppLoading/>
+        )
+      }
     );
   }
 }
