@@ -10,8 +10,14 @@ export default class App extends Component {
     super(props)
     this.state={
      login_status: -1,
+     new_user: false
     }
   }
+
+  setNewDisplayName(name){
+    this.setState({displayname: name, new_user: true})
+  }
+
   componentDidMount() {
     var config = {
       apiKey: "AIzaSyByWpAy1yK5XrD5ENlXEIIsC5VxQOxLY7A",
@@ -25,6 +31,13 @@ export default class App extends Component {
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
+        if (this.state.new_user){
+          user.updateProfile({
+            displayName: this.state.displayname,
+          }).then(()=>{
+            console.log("Display Name Set To: " + user.displayName)
+          });
+        }
         this.setState({login_status: 1})
       }else{
         this.setState({login_status: 0})
@@ -35,7 +48,7 @@ export default class App extends Component {
   render() {
       if (this.state.login_status == 0){
         return(
-          <LoginScreen />
+          <LoginScreen updateName={this.setNewDisplayName.bind(this)}/>
         )
       }else if (this.state.login_status == 1){
         return(
