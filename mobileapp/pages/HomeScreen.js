@@ -4,6 +4,7 @@ import * as firebase from "firebase";
 import QRCode from 'react-native-qrcode';
 import {withNavigation} from 'react-navigation'
 import Header from '../components/Header'
+import { Icon } from 'react-native-elements'
 
 class HomeScreen extends Component {
 
@@ -40,9 +41,13 @@ class HomeScreen extends Component {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity style={{flex: 1, backgroundColor: "#ffd621", justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
-            <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
-              Time
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
+                Time
+              </Text>
+              {' '}
+              <Icon name='schedule' color='black' />
+            </View>
           </TouchableOpacity>
         </View>
         <View style={{alignItems: 'center'}}>
