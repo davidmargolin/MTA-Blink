@@ -71,7 +71,7 @@ class HomeScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={{alignItems: 'center'}}>
-          <Text style={{textAlign: 'center', fontSize: 28, fontWeight: "600", margin: 16}}>{this.state.payment_type=="Time"? (this.state.time == "none" ? "No Timed Pass" : this.state.time + " expires " + this.state.expiration) :"Balance: $" + this.state.balance}</Text>
+          <Text style={{textAlign: 'center', fontSize: 28, fontWeight: "600", margin: 16}}>{this.state.payment_type=="Time"? (this.state.time == "none" ? "No Time" : this.state.time + " expires " + this.state.expiration) :"Balance: $" + this.state.balance}</Text>
           <QRCode
             value={this.state.qrcode_value}
             size={225}
