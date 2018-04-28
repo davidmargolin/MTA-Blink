@@ -9,7 +9,7 @@ export default class App extends Component {
   constructor(props){
     super(props)
     this.state={
-     login_status: -1,
+     login_status: 1,
    }
   }
   componentDidMount() {
