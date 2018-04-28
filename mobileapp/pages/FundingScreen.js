@@ -10,7 +10,7 @@ class FundingScreen extends Component {
     super(props)
     this.state={
       payment_type: 'Value',
-      fund_amount: "10",
+      fund_amount: 10,
       time_amount: "Weekly"
     }
   }
@@ -82,17 +82,17 @@ class FundingScreen extends Component {
           </View>
           <View style={{height: 240 , width: '100%'}}>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
-              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount==10?'white':'black'}}>
                 $10
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="25" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("25")}>
-              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="25"?'white':'black'}}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount==25?'white':'black'}}>
                 $25
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="50" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("50")}>
-              <Text style={{textAlign: 'center',fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="50"?'white':'black'}}>
+              <Text style={{textAlign: 'center',fontWeight: "bold", fontSize: 16, color: this.state.fund_amount==50?'white':'black'}}>
                 $50
               </Text>
             </TouchableOpacity>
@@ -100,8 +100,8 @@ class FundingScreen extends Component {
               <View style={{flexDirection: 'row', width: '100%'}}>
                 <TextInput
                   style={{marginLeft: 50, flex: 1, fontWeight: "bold", fontSize: 16, textAlign: 'center'}}
-                  onChangeText={(fund_amount) => this.setState({fund_amount})}
-                  value={this.state.fund_amount}
+                  onChangeText={(fund_amount) => this.setState({fund_amount: parseInt(fund_amount)})}
+                  value={this.state.fund_amount.toString()}
                   keyboardType="numeric"
                 />
                 <TouchableOpacity style={{flex: -1, height: '100%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
@@ -115,7 +115,7 @@ class FundingScreen extends Component {
         }
 
         <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: '#e09216', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput')}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput', {balance: this.props.navigation.state.params.balance, fund_amount: this.state.fund_amount, payment_type: this.state.payment_type, time_amount: this.state.time_amount})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
               Next
             </Text>
