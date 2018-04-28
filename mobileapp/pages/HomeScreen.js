@@ -14,6 +14,7 @@ class HomeScreen extends Component {
 
   switchPaymentType=(type)=>{
       this.setState({payment_type: type})
+      this.generateQRCode()
   }
 
   generateQRCode=()=>{
