@@ -32,6 +32,7 @@ export default class App extends Component {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         if (this.state.new_user){
+          this.writeUserData(this.state.displayname, user.uid);
           user.updateProfile({
             displayName: this.state.displayname,
           }).then(()=>{
@@ -44,6 +45,19 @@ export default class App extends Component {
       }
     })
   }
+
+  writeUserData(usersName, userID) {
+     firebase.database().ref('users/' + userID).set({
+        name: usersName,
+        balance: 0,
+        time: "none",
+        expiration: "none",
+        transactions : {
+          0:  "No transactions"
+        }
+    })
+  }
+
 
   render() {
       if (this.state.login_status == 0){

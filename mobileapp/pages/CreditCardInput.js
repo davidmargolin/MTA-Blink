@@ -9,18 +9,43 @@ class HomeScreen extends Component {
 
   constructor(props){
     super(props)
-    this.state = {
-      balance: ""
+  }
+
+  _onChange = (formData) => {}
+
+  //console.log(JSON.stringify(formData, null, " "));
+
+  addBalance(uid) {
+    var balanceRef = firebase.database().ref('users/' + uid + "/balance");
+    console.log(this.props.navigation.state.params.fund_amount)
+    balanceRef.set(parseInt(this.props.navigation.state.params.balance) + parseInt(this.props.navigation.state.params.fund_amount))
+  }
+
+  addTime(uid){
+    var time = this.props.navigation.state.params.time_amount
+    var timeRef = firebase.database().ref('users/' + uid + "/time");
+    timeRef.set(time);
+    var expirationRef = firebase.database().ref('users/' + uid + "/expiration");
+    if(time == "Weekly"){
+      var today = new Date();
+      var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+7);
+      expirationRef.set(nextWeek.toLocaleDateString())
+    }
+    else if(time == "Monthly"){
+      var today = new Date();
+      var nextWeek = new Date(today.getFullYear(), today.getMonth(), today.getDate()+30);
+      expirationRef.set(nextWeek.toLocaleDateString())
     }
   }
 
-  _onChange = (formData) => console.log(JSON.stringify(formData, null, " "));
-
-  addBalance() {
-    var balance = firebase.database().ref('users/' + userID + '/balance');
-    balance.on('value', function(snapshot) {
-      current.setState({balance: snapshot.val()});
-    });
+  purchase() {
+    var uid = firebase.auth().currentUser.uid;
+    if(this.props.navigation.state.params.payment_type == 'Value'){
+      this.addBalance(uid);
+    }
+    else{
+      this.addTime(uid);
+    }
   }
 
   render() {
@@ -42,13 +67,14 @@ class HomeScreen extends Component {
               placeholderColor={"darkgray"}
 
               onChange={this._onChange} />
-        <TouchableOpacity
-           style = {styles.submitButton}
-           onPress = {
-              () => this.login(this.email, this.password)
-           }>
-           <Text style = {styles.submitButtonText}> {this.state.newUser? "Register" : "Sign In / Register"} </Text>
-        </TouchableOpacity>
+
+        <View style={{marginTop: 25, height: 60, width: "100%", backgroundColor: '#3cba54', justifyContent: 'center'}}>
+          <TouchableOpacity onPress={()=>this.purchase()}>
+            <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
+              Finish Transaction
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

@@ -94,8 +94,8 @@ class FundingScreen extends Component {
           <View style={{height: 240 , width: '100%'}}>
             <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
 
-                // <TouchableOpacity style={{flex: 2, height: '120%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
-                // </TouchableOpacity>
+                <TouchableOpacity style={{flex: 2, height: '100%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
+                </TouchableOpacity>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
