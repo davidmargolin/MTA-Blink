@@ -77,38 +77,42 @@ class FundingScreen extends Component {
         <View>
           <View style={{height: 60, justifyContent: 'center'}}>
             <Text style={{textAlign: 'center', fontSize: 16, color: 'black'}}>
-              Select Amount:
+              Enter Amount:
             </Text>
           </View>
+          <View style={{height: 240 , width: '100%', flexDirection: 'row'}}>
+
+          <Text style={{fontSize: 100, color: 'gray', fontWeight: '600'}}>  $ </Text>
+          <TextInput
+              style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'gray', fontSize: 100, textAlign: 'center'}}
+              onChangeText={(fund_amount) => this.setState({fund_amount})}
+              value={this.state.fund_amount}
+              keyboardType="numeric"
+            />
+
+          </View>
           <View style={{height: 240 , width: '100%'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
+
+                // <TouchableOpacity style={{flex: 2, height: '120%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
+                // </TouchableOpacity>
+            </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
                 $10
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="25" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("25")}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="20" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("20")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="25"?'white':'black'}}>
-                $25
+                $20
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="50" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("50")}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="40" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("40")}>
               <Text style={{textAlign: 'center',fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="50"?'white':'black'}}>
-                $50
+                $40
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
-              <View style={{flexDirection: 'row', width: '100%'}}>
-                <TextInput
-                  style={{marginLeft: 50, flex: 1, fontWeight: "bold", fontSize: 16, textAlign: 'center'}}
-                  onChangeText={(fund_amount) => this.setState({fund_amount})}
-                  value={this.state.fund_amount}
-                  keyboardType="numeric"
-                />
-                <TouchableOpacity style={{flex: -1, height: '100%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
-                  <Text style={{fontSize: 18, fontWeight: '600'}}>Enter</Text>
-                </TouchableOpacity>
-              </View>
-            </TouchableOpacity>
+
           </View>
         </View>
 
@@ -117,7 +121,7 @@ class FundingScreen extends Component {
         <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: '#e09216', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput')}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
-              Next
+              Purchase
             </Text>
           </TouchableOpacity>
         </View>

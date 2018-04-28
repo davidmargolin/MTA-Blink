@@ -22,7 +22,7 @@ class Header extends Component {
             </TouchableOpacity>
           }
 
-          <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold', margin: 16}}>MTA Scanner</Text>
+          <Text style={{color: 'white', fontSize: 24, fontWeight: 'bold', margin: 16}}>MTA Blink</Text>
       </View>
     );
   }
