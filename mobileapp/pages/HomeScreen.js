@@ -11,7 +11,7 @@ class HomeScreen extends Component {
   constructor(props){
     super(props)
     this.state={
-      balance: "",
+      balance: 0,
       time: "",
       expiration: "",
       payment_type: 'Time',
@@ -77,7 +77,7 @@ class HomeScreen extends Component {
             bgColor='black'
             fgColor={(this.state.payment_type=="Time")?'#ffd621':'#eaeadc'}/>
           <Text style={{textAlign: 'center', fontSize: 26, fontWeight: "bold", margin: 20, width: 350}}>Please hold this code a few inches from the scanner.</Text>
-          <TouchableOpacity style={{backgroundColor: 'black', width: 300, marginTop: 10, padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
+          <TouchableOpacity style={{backgroundColor: 'black', width: 300, marginTop: 10, padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen', {balance: this.state.balance})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>Add Funds</Text>
           </TouchableOpacity>
         </View>
