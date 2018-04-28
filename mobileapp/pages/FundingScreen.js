@@ -45,9 +45,8 @@ class FundingScreen extends Component {
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
-                Add Value
+                Add Value $
               </Text>
-              <Icon name='credit' color='black' />
             </View>
           </TouchableOpacity>
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Time"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
