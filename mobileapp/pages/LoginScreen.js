@@ -18,6 +18,8 @@ export default class LoginScreen extends Component {
      if (replaced!=""){
        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(() => {
          this.props.updateName(this.name)
+         var user = firebase.auth().currentUser;
+         this.writeUserData(this.name, user.uid);
          console.log("Created New User")
        }).catch(error => {
          this.setState({errorCode: error.message})
@@ -43,7 +45,16 @@ export default class LoginScreen extends Component {
    }
  }
 
-  componentDidMount() {
+  writeUserData(usersName, userID) {
+     firebase.database().ref('users/' + userID).set({
+        name: usersName,
+        balance: 0,
+        time: "none",
+        expiration: "none",
+        transactions : {
+          0:  "No transactions"
+        }
+    })
   }
 
   render() {

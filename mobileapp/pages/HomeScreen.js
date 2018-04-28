@@ -11,6 +11,9 @@ class HomeScreen extends Component {
   constructor(props){
     super(props)
     this.state={
+      balance: "",
+      time: "",
+      expiration: "",
       payment_type: 'Time',
     }
   }
@@ -28,6 +31,23 @@ class HomeScreen extends Component {
 
   componentDidMount() {
      setInterval(()=>this.generateQRCode(), 5000);
+  }
+
+  componentWillMount() {
+    var current = this;
+    var userID = firebase.auth().currentUser.uid;
+    var balance = firebase.database().ref('users/' + userID + '/balance');
+    balance.on('value', function(snapshot) {
+      current.setState({balance: snapshot.val()});
+    });
+    var time = firebase.database().ref('users/' + userID + '/time');
+    time.on('value', function(snapshot) {
+      current.setState({time: snapshot.val()});
+    });
+    var expiration = firebase.database().ref('users/' + userID + '/expiration');
+    expiration.on('value', function(snapshot) {
+      current.setState({expiration: snapshot.val()});
+    });
   }
 
   render() {
@@ -51,7 +71,7 @@ class HomeScreen extends Component {
           </TouchableOpacity>
         </View>
         <View style={{alignItems: 'center'}}>
-          <Text style={{textAlign: 'center', fontSize: 28, fontWeight: "600", margin: 16}}>{this.state.payment_type=="Time"?"Monthly (Exp: 12/7/2018)":"Balance: $25.00"}</Text>
+          <Text style={{textAlign: 'center', fontSize: 28, fontWeight: "600", margin: 16}}>{this.state.payment_type=="Time"? (this.state.time == "none" ? "No Timed Pass" : this.state.time + " expires " + this.state.expiration) :"Balance: $" + this.state.balance}</Text>
           <QRCode
             value={this.state.qrcode_value}
             size={225}
