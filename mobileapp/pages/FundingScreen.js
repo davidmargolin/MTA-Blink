@@ -33,13 +33,13 @@ class FundingScreen extends Component {
       <View style={styles.container}>
         <Header withBackButton/>
         <View style={{flexDirection: 'row', height: 60 , width: '100%'}}>
-          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
+          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
+            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
               Add Value $
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Time"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: this.state.payment_type=="Time"?'white':'black'}}>
+          <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Time"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
+            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Time"?'white':'black'}}>
               Add Time
             </Text>
           </TouchableOpacity>
@@ -54,18 +54,18 @@ class FundingScreen extends Component {
             </Text>
           </View>
           <View style={{height: 240 , width: '100%'}}>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Weekly" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Weekly")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.time_amount=="Weekly"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Weekly" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Weekly")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.time_amount=="Weekly"?'white':'black'}}>
                 Weekly
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Monthly" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Monthly")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.time_amount=="Monthly"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Monthly" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Monthly")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.time_amount=="Monthly"?'white':'black'}}>
                 Monthly
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Yearly" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Yearly")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.time_amount=="Yearly"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Yearly" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Yearly")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.time_amount=="Yearly"?'white':'black'}}>
                 Yearly
               </Text>
             </TouchableOpacity>
@@ -81,22 +81,22 @@ class FundingScreen extends Component {
             </Text>
           </View>
           <View style={{height: 300 , width: '100%'}}>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
                 $10
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="25" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("25")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.fund_amount=="25"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="25" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("25")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="25"?'white':'black'}}>
                 $25
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="50" ? '#5191f7' : '#b1c1db', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("50")}>
-              <Text style={{textAlign: 'center', fontSize: 16, color: this.state.fund_amount=="50"?'white':'black'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="50" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("50")}>
+              <Text style={{textAlign: 'center',fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="50"?'white':'black'}}>
                 $50
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: '#b1c1db', justifyContent: 'center'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                 onChangeText={(fund_amount) => this.setState({fund_amount})}
@@ -108,9 +108,9 @@ class FundingScreen extends Component {
 
         }
 
-        <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: 'green', justifyContent: 'center'}}>
+        <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: '#e09216', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput')}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: 'black'}}>
+            <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
               Next
             </Text>
           </TouchableOpacity>

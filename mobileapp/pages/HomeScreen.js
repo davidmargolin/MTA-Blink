@@ -65,7 +65,6 @@ class HomeScreen extends Component {
               <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
                 Time
               </Text>
-              {' '}
               <Icon name='schedule' color='black' />
             </View>
           </TouchableOpacity>
