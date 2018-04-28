@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Button} from 'react-native';
 import * as firebase from "firebase";
+import {withNavigation} from 'react-navigation'
+import Header from '../components/Header'
 
-export default class FundingScreen extends Component {
+class FundingScreen extends Component {
 
   constructor(props){
     super(props)
@@ -29,9 +31,7 @@ export default class FundingScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{height: 80, backgroundColor: 'brown'}}>
-            <Text style={{paddingTop: 25, margin: 8, color: 'white', fontSize: 25}}>MTA Scanner</Text>
-        </View>
+        <Header withBackButton/>
         <View style={{flexDirection: 'row', height: 60 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
             <Text style={{textAlign: 'center', fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
@@ -109,7 +109,7 @@ export default class FundingScreen extends Component {
         }
 
         <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: 'green', justifyContent: 'center'}}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput')}>
             <Text style={{textAlign: 'center', fontSize: 16, color: 'black'}}>
               Next
             </Text>
@@ -119,6 +119,8 @@ export default class FundingScreen extends Component {
     );
   }
 }
+
+export default withNavigation(FundingScreen)
 
 const styles = StyleSheet.create({
   container: {
