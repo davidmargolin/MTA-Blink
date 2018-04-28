@@ -8,7 +8,7 @@ class HomeScreen extends Component {
   constructor(props){
     super(props)
     this.state={
-      payment_type: 'Time'
+      payment_type: 'Time',
     }
   }
 
@@ -27,14 +27,14 @@ class HomeScreen extends Component {
   }
 
   render() {
-
+    console.log(firebase.auth().currentUser.displayName)
     return (
       <View style={styles.container}>
         <View style={{height: 80, backgroundColor: 'brown'}}>
             <Text style={{paddingTop: 25, margin: 8, color: 'white', fontSize: 25}}>MTA Scanner</Text>
         </View>
         <View>
-          <Text style={{textAlign: 'center', margin: 8, fontSize: 18}}>David Margolin</Text>
+          <Text style={{textAlign: 'center', margin: 8, fontSize: 18}}>{firebase.auth().currentUser.displayName}</Text>
         </View>
         <View style={{flexDirection: 'row', height: 40 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5191f7':'#b1c1db', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
