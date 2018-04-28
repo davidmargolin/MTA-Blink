@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Button} from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Button, Keyboard } from 'react-native';
 import * as firebase from "firebase";
 import {withNavigation} from 'react-navigation'
 import Header from '../components/Header'
@@ -80,7 +80,7 @@ class FundingScreen extends Component {
               Select Amount:
             </Text>
           </View>
-          <View style={{height: 300 , width: '100%'}}>
+          <View style={{height: 240 , width: '100%'}}>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.fund_amount=="10" ? '#73605b' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectFundAmount("10")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.fund_amount=="10"?'white':'black'}}>
                 $10
@@ -97,11 +97,17 @@ class FundingScreen extends Component {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}}>
-              <TextInput
-                style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                onChangeText={(fund_amount) => this.setState({fund_amount})}
-                value={this.state.fund_amount}
-              />
+              <View style={{flexDirection: 'row', width: '100%'}}>
+                <TextInput
+                  style={{marginLeft: 50, flex: 1, fontWeight: "bold", fontSize: 16, textAlign: 'center'}}
+                  onChangeText={(fund_amount) => this.setState({fund_amount})}
+                  value={this.state.fund_amount}
+                  keyboardType="numeric"
+                />
+                <TouchableOpacity style={{flex: -1, height: '100%', width: 50, justifyContent: 'center'}} onPress={Keyboard.dismiss}>
+                  <Text style={{fontSize: 18, fontWeight: '600'}}>Enter</Text>
+                </TouchableOpacity>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
