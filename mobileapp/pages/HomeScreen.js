@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Button} from 'react-native';
 import * as firebase from "firebase";
 import QRCode from 'react-native-qrcode';
-export default class HomeScreen extends Component {
+import {withNavigation} from 'react-navigation'
+class HomeScreen extends Component {
 
   constructor(props){
     super(props)
@@ -55,7 +56,7 @@ export default class HomeScreen extends Component {
           bgColor='black'
           fgColor='white'/>
     <Text style={{textAlign: 'center', margin: 8, width: 350}}>Instructions: Hold this a few inches from the scanner. Add funds by clicking the button below.</Text>
-    <TouchableOpacity style={{backgroundColor: '#3ede5b', padding: 8}}>
+  <TouchableOpacity style={{backgroundColor: '#3ede5b', padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen')}>
       <Text style={{color: 'white', padding: 8}}>Add Funds</Text>
     </TouchableOpacity>
   </View>
@@ -63,6 +64,8 @@ export default class HomeScreen extends Component {
     );
   }
 }
+
+export default withNavigation(HomeScreen);
 
 const styles = StyleSheet.create({
   container: {
