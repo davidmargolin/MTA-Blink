@@ -53,12 +53,15 @@ class HomeScreen extends Component {
   render() {
     return (
       <View style={[styles.container, {backgroundColor: this.state.payment_type == "Time" ? "#ffd621" : '#eaeadc'}]}>
-        <Header/>
+        <Header withLogOutButton='true'/>
         <View style={{flexDirection: 'row', marginTop: -1, height: 60 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
-            <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
-              Value $
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
+                Value
+              </Text>
+              <Icon name='credit' color='black' />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={{flex: 1, backgroundColor: "#ffd621", justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -75,7 +78,7 @@ class HomeScreen extends Component {
             value={this.state.qrcode_value}
             size={225}
             bgColor='black'
-            fgColor={(this.state.payment_type=="Time")?'#ffd621':'#eaeadc'}/>
+            fgColor='white'/>
           <Text style={{textAlign: 'center', fontSize: 26, fontWeight: "bold", margin: 20, width: 350}}>Please hold this code a few inches from the scanner.</Text>
           <TouchableOpacity style={{backgroundColor: 'black', width: 300, marginTop: 10, padding: 8}} onPress={()=>this.props.navigation.navigate('FundingScreen', {balance: this.state.balance})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>Add Funds</Text>

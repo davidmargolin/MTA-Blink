@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Image, Button, Keyboard } from 'react-native';
 import * as firebase from "firebase";
+import { Icon } from 'react-native-elements'
 import { withNavigation } from 'react-navigation'
 import Header from '../components/Header'
 
@@ -17,14 +18,14 @@ class FundingScreen extends Component {
 
   dismissEvent = event => {
     event.preventDefault();
-    if(this.state.fund_amount.length < 1)
+    if(this.state.fund_amount.length < 1){
       this.setState({fund_amount: "0"})
     }
     Keyboard.dismiss();
   }
 
   selectFundAmount=(amt)=>{
-      this.setState({fund_amount: amt})
+    this.setState({fund_amount: amt})
   }
 
   selectTimeAmount=(time)=>{
@@ -33,7 +34,7 @@ class FundingScreen extends Component {
 
 
   switchPaymentType=(type)=>{
-      this.setState({payment_type: type})
+    this.setState({payment_type: type})
   }
 
   render() {
@@ -42,22 +43,28 @@ class FundingScreen extends Component {
         <Header withBackButton/>
         <View style={{flexDirection: 'row', height: 60 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Value"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
-            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
-              Add Value $
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Value"?'white':'black'}}>
+                Add Value
+              </Text>
+              <Icon name='credit' color='black' />
+            </View>
           </TouchableOpacity>
           <TouchableOpacity style={{flex: 1, backgroundColor: this.state.payment_type=="Time"?'#5d535e':'#eaeadc', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
-            <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Time"?'white':'black'}}>
-              Add Time
-            </Text>
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: this.state.payment_type=="Time"?'white':'black'}}>
+                Add Time
+              </Text>
+              <Icon name='schedule' color='black' />
+            </View>
           </TouchableOpacity>
         </View>
 
         {this.state.payment_type == "Time" ?
 
         <View>
-          <View style={{height: 60, justifyContent: 'center'}}>
-            <Text style={{textAlign: 'center', fontSize: 16, color: 'black'}}>
+          <View style={{height: 80, justifyContent: 'center'}}>
+            <Text style={{textAlign: 'center', fontWeight: '900', fontSize: 24, color: 'gray'}}>
               Select Time:
             </Text>
           </View>
@@ -96,8 +103,8 @@ class FundingScreen extends Component {
                        value={(this.state.fund_amount)}
                        maxLength={3}/>
           </View>
-          <View style={{height: 240 , width: '100%'}}>
-            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}} onPress={(event) => this.dismissEvent}>
+          <View style={{height: 267, width: '100%'}}>
+            <TouchableOpacity style={{flex: 1, backgroundColor: '#eaeadc', justifyContent: 'center'}} onPress={(event) => this.dismissEvent(event)}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 16, color: 'black'}}>
                 Enter
               </Text>
@@ -124,7 +131,7 @@ class FundingScreen extends Component {
         }
 
         <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: '#e09216', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput')}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput', {balance: this.props.navigation.state.params.balance, payment_type: this.state.payment_type, fund_amount: this.state.fund_amount, time_amount: this.state.time_amount})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
               Purchase
             </Text>
