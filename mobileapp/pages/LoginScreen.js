@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Image, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
 import * as firebase from "firebase";
-// import Icon from 'react-native-vector-icons/FontAwesome';
-// import Container from '../components/Container';
-// import Button from '../components/Button';
-// import Label from '../components/Label';
+
 
 export default class LoginScreen extends Component {
       state = {
@@ -26,8 +23,13 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
+
       <View style = {styles.container}>
-        <View style = {styles.container}>
+            <Image
+                resizeMode="contain"
+                style={{width: null, height: 300}}
+                source={require('../images/mta-logo.png')}
+              />
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
@@ -49,31 +51,30 @@ export default class LoginScreen extends Component {
                }>
                <Text style = {styles.submitButtonText}> Submit </Text>
             </TouchableOpacity>
-          </View>
-        </View>
-    );
+         </View>
+    )
   }
 }
-// export default LoginScreen
- // AppRegistry.registerComponent('AwesomeProject', () => LoginScreen);
 
 const styles = StyleSheet.create({
   container: {
+    flex:1,
       paddingTop: 23
    },
    input: {
       margin: 15,
       height: 40,
-      borderColor: '#7a42f4',
+      borderColor: '#c5c8cc',
       borderWidth: 1
    },
    submitButton: {
-      backgroundColor: '#7a42f4',
+      backgroundColor: '#2352a3',
       padding: 10,
       margin: 15,
       height: 40,
    },
    submitButtonText:{
+      textAlign: 'center',
       color: 'white'
    }
 });
