@@ -66,7 +66,7 @@ class HomeScreen extends Component {
           <TouchableOpacity style={{flex: 1, backgroundColor: "#ffd621", justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Time")}>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>
               <Text style={{textAlign: 'center', fontWeight: "800", fontSize: 24, color: 'black'}}>
-                Time
+                Time  {' '}
               </Text>
               <Icon name='schedule' color='black' />
             </View>
