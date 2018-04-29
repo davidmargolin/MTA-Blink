@@ -66,6 +66,7 @@ export default class LoginScreen extends Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Email"
+               placeholderTextColor = "#cccccc"
                 returnKeyType="next"
                  keyboardType='email-address'
                autoCapitalize = "none"
@@ -75,6 +76,7 @@ export default class LoginScreen extends Component {
             <TextInput style = {styles.input}
                underlineColorAndroid = "transparent"
                placeholder = "Password"
+               placeholderTextColor = "#cccccc"
                 ref = 'PassInput'
                 returnKeyType="next"
                autoCapitalize = "none"

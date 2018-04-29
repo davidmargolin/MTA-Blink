@@ -4,10 +4,8 @@ import * as firebase from "firebase";
 import {Constants} from 'expo'
 import Header from '../components/Header'
 import {withNavigation} from 'react-navigation'
-import { CreditCardInput } from "react-native-credit-card-input";
-var stripe = require('stripe-client')('pk_test_Eslvav5ELSvHrXpJ2GZmqE1q');
-
-class HomeScreen extends Component {
+import { CreditCardInput as CreditCardWidget} from "react-native-credit-card-input";
+class CreditCardInput extends Component {
 
   constructor(props){
     super(props)
@@ -75,7 +73,7 @@ class HomeScreen extends Component {
         }).then((response) => {
           response.json().then(response=>{
             if (response.status=="succeeded"){
-              //go to the next page
+              this.props.navigation.navigate('PaymentSuccessful')
             }
           })
         })
@@ -88,7 +86,7 @@ class HomeScreen extends Component {
       <View style={styles.container}>
 
         <Header withBackButton/>
-        <CreditCardInput
+        <CreditCardWidget
               autoFocus
 
               requiresName
@@ -105,7 +103,7 @@ class HomeScreen extends Component {
 
         <View style={{marginTop: 25, height: 60, width: "100%", backgroundColor: '#3cba54', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.purchase()}>
-            <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
+            <Text style={{color: 'white', fontWeight: 'bold', fontSize: 30, padding: 8, textAlign: 'center'}}>
               Finish Transaction
             </Text>
           </TouchableOpacity>
@@ -115,7 +113,7 @@ class HomeScreen extends Component {
   }
 }
 
-export default withNavigation(HomeScreen);
+export default withNavigation(CreditCardInput);
 
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? Constants.statusBarHeight : StatusBar.currentHeight;
 
