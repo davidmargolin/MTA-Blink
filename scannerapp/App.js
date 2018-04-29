@@ -8,7 +8,8 @@ export default class App extends React.Component {
     this.state = {
       hasCameraPermission: null,
       scanning: true,
-      uservalid: false
+      uservalid: false,
+      balance: 0
     }
   }
 
@@ -29,12 +30,28 @@ export default class App extends React.Component {
     this.setState({scanning: false})
 
     let time = data.slice(-13);
+    let uid = data.slice(1,29);
     console.log("code time is: "+time)
     let date = new Date();
     let currenttime = date.getTime();
     console.log("current time is: "+currenttime)
     if (time <= currenttime+8000 && time >= currenttime-8000){
-      this.setState({ uservalid: true})
+      if(data.slice(0,1) == "T"){
+        this.setState({ uservalid: true})
+      }
+      else {
+        var balanceRef = firebase.database().ref('users/' + uid + '/balance');
+        balanceRef.once('value', (snapshot)=> {
+          var val = snapshot.val()
+          if(val >= 2.75){
+            balanceRef.set(val - 2.75)
+            this.setState({ uservalid: true})
+          }
+          else {
+            this.setState({ uservalid: false})
+          }
+        });
+      }
     }else{
       this.setState({ uservalid: false})
     }

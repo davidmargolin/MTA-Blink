@@ -11,7 +11,7 @@ class FundingScreen extends Component {
     super(props)
     this.state={
       payment_type: 'Value',
-      fund_amount: "10",
+      fund_amount: 10,
       time_amount: "Weekly"
     }
   }
@@ -19,7 +19,7 @@ class FundingScreen extends Component {
   dismissEvent = event => {
     event.preventDefault();
     if(this.state.fund_amount.length < 1){
-      this.setState({fund_amount: "0"})
+      this.setState({fund_amount: 0})
     }
     Keyboard.dismiss();
   }
@@ -29,7 +29,15 @@ class FundingScreen extends Component {
   }
 
   selectTimeAmount=(time)=>{
-    this.setState({time_amount: time})
+    let funding = 0
+    if (time == "WeeklyEXP"){
+      funding = 59.50
+    }else if(time == "Monthly"){
+      funding = 121.00
+    }else if(time == "Weekly"){
+      funding = 32.00
+    }
+    this.setState({time_amount: time, fund_amount: funding})
   }
 
 
@@ -38,6 +46,7 @@ class FundingScreen extends Component {
   }
 
   render() {
+    console.log("the amount is "+this.state.fund_amount)
     return (
       <View style={styles.container}>
         <Header withBackButton/>
@@ -70,17 +79,17 @@ class FundingScreen extends Component {
           <View style={{height: 240 , width: '100%'}}>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Weekly" ? '#2352a3' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Weekly")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 20, color: this.state.time_amount=="Weekly"?'white':'#8e8e8e'}}>
-                Weekly
+              Weekly $32.00
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="WeeklyEXP" ? '#2352a3' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("WeeklyEXP")}>
+              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 20, color: this.state.time_amount=="WeeklyEXP"?'white':'#8e8e8e'}}>
+              Weekly Express $59.50
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Monthly" ? '#2352a3' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Monthly")}>
               <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 20, color: this.state.time_amount=="Monthly"?'white':'#8e8e8e'}}>
-                Monthly
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{flex: 1, backgroundColor: this.state.time_amount=="Yearly" ? '#2352a3' : '#eaeadc', justifyContent: 'center'}} onPress={()=>this.selectTimeAmount("Yearly")}>
-              <Text style={{textAlign: 'center', fontWeight: "bold", fontSize: 20, color: this.state.time_amount=="Yearly"?'white':'#8e8e8e'}}>
-                Yearly
+              Monthly $121.00
               </Text>
             </TouchableOpacity>
 
@@ -103,7 +112,7 @@ class FundingScreen extends Component {
             <TextInput style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'white', fontSize: 100, textAlign: 'center'}}
                        keyboardType="phone-pad"
                        onChangeText={(fund_amount) => this.setState({fund_amount})}
-                       value={(this.state.fund_amount)}
+                       value={this.state.fund_amount.toString()}
                        maxLength={3}/>
           </View>
           <View style={{height: 267, backgroundColor: '#3d3d3d', width: '100%'}}>
