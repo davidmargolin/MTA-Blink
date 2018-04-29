@@ -107,15 +107,9 @@ class FundingScreen extends Component {
               Enter Amount:
             </Text>
           </View>
-<<<<<<< HEAD
-          <View style={{height: 140, width: '100%', backgroundColor: '#3d3d3d', flexDirection: 'row', justifyContent: 'center'}}>
-            <Text style={{flex: 1, fontSize: 100, backgroundColor:'#3d3d3d', color: 'white', fontWeight: '600'}}>  $ </Text>
-            <TextInput style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'white', fontSize: 100, textAlign: 'center'}}
-=======
           <View style={{height: 120, width: '100%', backgroundColor: '#3d3d3d', flexDirection: 'row', justifyContent: 'center'}}>
             <Text style={{flex: 1, marginTop: 10, fontSize: 100, backgroundColor:'#3d3d3d', color: 'white', fontWeight: '600'}}>  $ </Text>
             <TextInput style={{marginTop: 20, marginLeft: 40, flex: 2, fontWeight: '600', color: 'white', fontSize: 100, textAlign: 'center'}}
->>>>>>> 452fe7772344d4e31a27b05e59fbe9c94b481ddd
                        keyboardType="phone-pad"
                        onChangeText={(fund_amount) => this.setState({fund_amount})}
                        value={this.state.fund_amount.toString()}
