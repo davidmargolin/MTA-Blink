@@ -1,0 +1,12 @@
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "globals": {
+    "__DEV__": false
+  },
+  "rules": {
+    "global-require": [0],
+    "no-underscore-dangle": [2, { "allowAfterThis": false, "allow": ["_id"] }],
+    "import/no-unresolved": [2, { "commonjs": true, "ignore": ["\\.png$"] }]
+  }
+}

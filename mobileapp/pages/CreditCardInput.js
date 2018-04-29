@@ -5,13 +5,14 @@ import {Constants} from 'expo'
 import Header from '../components/Header'
 import {withNavigation} from 'react-navigation'
 import { CreditCardInput } from "react-native-credit-card-input";
+var stripe = require('stripe-client')('pk_test_Eslvav5ELSvHrXpJ2GZmqE1q');
+
 class HomeScreen extends Component {
 
   constructor(props){
     super(props)
+    this.formData = {}
   }
-
-  _onChange = (formData) => {}
 
   //console.log(JSON.stringify(formData, null, " "));
 
@@ -51,6 +52,35 @@ class HomeScreen extends Component {
     else{
       this.addTime(uid);
     }
+    if (this.formData.valid){
+      stripe.createToken({
+        card: {
+          number: this.formData.values.number,
+          exp_month: this.formData.values.expiry.split("/")[0],
+          exp_year: this.formData.values.expiry.split("/")[1],
+          cvc: this.formData.values.cvc,
+          name: this.formData.values.name
+        }
+      }).then((card)=>{
+        fetch('https://us-central1-mta-scanner.cloudfunctions.net/helloWorld', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: 2000,
+            stripeToken: card.id ,
+          }),
+        }).then((response) => {
+          response.json().then(response=>{
+            if (response.status=="succeeded"){
+              //go to the next page
+            }
+          })
+        })
+      });
+    }
   }
 
   render() {
@@ -64,14 +94,14 @@ class HomeScreen extends Component {
               requiresName
               requiresCVC
               requiresPostalCode
-
+              validatePostalCode={()=>("valid")}
               labelStyle={{color: 'black', fontSize: 12}}
               inputStyle={{fontSize: 16, color: 'black'}}
               validColor={"black"}
               invalidColor={"red"}
               placeholderColor={"darkgray"}
 
-              onChange={this._onChange} />
+              onChange={(formData)=>this.formData=formData} />
 
         <View style={{marginTop: 25, height: 60, width: "100%", backgroundColor: '#3cba54', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.purchase()}>
