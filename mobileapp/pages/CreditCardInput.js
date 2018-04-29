@@ -5,10 +5,15 @@ import {Constants} from 'expo'
 import Header from '../components/Header'
 import {withNavigation} from 'react-navigation'
 import { CreditCardInput as CreditCardWidget} from "react-native-credit-card-input";
+var stripe = require('stripe-client')('pk_test_Eslvav5ELSvHrXpJ2GZmqE1q');
+
 class CreditCardInput extends Component {
 
   constructor(props){
     super(props)
+    this.state={
+      errorText: ""
+    }
     this.formData = {}
   }
 
@@ -44,12 +49,7 @@ class CreditCardInput extends Component {
 
   purchase() {
     var uid = firebase.auth().currentUser.uid;
-    if(this.props.navigation.state.params.payment_type == 'Value'){
-      this.addBalance(uid);
-    }
-    else{
-      this.addTime(uid);
-    }
+
     if (this.formData.valid){
       stripe.createToken({
         card: {
@@ -67,17 +67,29 @@ class CreditCardInput extends Component {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            amount: 2000,
+            amount: this.props.navigation.state.params.fund_amount*100,
             stripeToken: card.id ,
           }),
         }).then((response) => {
           response.json().then(response=>{
             if (response.status=="succeeded"){
+              if(this.props.navigation.state.params.payment_type == 'Value'){
+                this.addBalance(uid);
+              }
+              else{
+                this.addTime(uid);
+              }
               this.props.navigation.navigate('PaymentSuccessful')
+            }else{
+              this.setState({errorText: "There was an error with your transaction. Please confirm your details and please try again."})
             }
+          }).catch((error)=>{
+              this.setState({errorText: "There was an error with your transaction. Please confirm your details and please try again."})
           })
         })
       });
+    }else{
+      this.setState({errorText: "Your credit card information is incomplete or malformed."})
     }
   }
 
@@ -100,7 +112,7 @@ class CreditCardInput extends Component {
               placeholderColor={"darkgray"}
 
               onChange={(formData)=>this.formData=formData} />
-
+            <Text style={{textAlign:'center', margin: 4, color: 'red'}}>{this.state.errorText}</Text>
         <View style={{marginTop: 25, height: 60, width: "100%", backgroundColor: '#3cba54', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.purchase()}>
             <Text style={{color: 'white', fontWeight: 'bold', fontSize: 30, padding: 8, textAlign: 'center'}}>
