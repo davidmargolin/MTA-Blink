@@ -108,7 +108,7 @@ class FundingScreen extends Component {
             </Text>
           </View>
           <View style={{height: 140, width: '100%', backgroundColor: '#3d3d3d', flexDirection: 'row', justifyContent: 'center'}}>
-            <Text style={{flex: 1, fontSize: 100, backgroundColor:'3d3d3d', color: 'white', fontWeight: '600'}}>  $ </Text>
+            <Text style={{flex: 1, fontSize: 100, backgroundColor:'#3d3d3d', color: 'white', fontWeight: '600'}}>  $ </Text>
             <TextInput style={{marginLeft: 40, flex: 2, fontWeight: '600', color: 'white', fontSize: 100, textAlign: 'center'}}
                        keyboardType="phone-pad"
                        onChangeText={(fund_amount) => this.setState({fund_amount})}

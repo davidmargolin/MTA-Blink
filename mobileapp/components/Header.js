@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar, Platform, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Platform, Image, Button, StatusBar} from 'react-native';
 import {Constants} from 'expo'
 import {withNavigation} from 'react-navigation'
 import { Icon } from 'react-native-elements'
@@ -11,6 +11,10 @@ class Header extends Component {
     return (
         <View
           style={styles.header}>
+          <StatusBar
+            backgroundColor="transparent"
+            barStyle="light-content"
+          />
           {
             this.props.withBackButton &&
             <TouchableOpacity

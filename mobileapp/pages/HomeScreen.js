@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Button, StatusBar} from 'react-native';
 import * as firebase from "firebase";
 import QRCode from 'react-native-qrcode';
 import {withNavigation} from 'react-navigation'
@@ -55,6 +55,10 @@ class HomeScreen extends Component {
     return (
       <View style={[styles.container, {backgroundColor: this.state.payment_type == "Time" ? "#eaeadc" : '#3d3d3d'}]}>
         <Header withLogOutButton/>
+        <StatusBar
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
         <View style={{flexDirection: 'row', marginTop: -1, height: 60 , width: '100%'}}>
           <TouchableOpacity style={{flex: 1, backgroundColor: '#3d3d3d', justifyContent: 'center'}} onPress={()=>this.switchPaymentType("Value")}>
             <View style={{flexDirection: 'row', justifyContent: 'center'}}>

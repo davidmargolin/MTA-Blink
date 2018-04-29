@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, StatusBar, Platform, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Platform, Image, Button, StatusBar} from 'react-native';
 import * as firebase from "firebase";
 import {Constants} from 'expo'
 import Header from '../components/Header'
@@ -99,7 +99,10 @@ class CreditCardInput extends Component {
   render() {
     return (
       <View style={styles.container}>
-
+      <StatusBar
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
         <Header withBackButton/>
         <CreditCardWidget
               autoFocus
