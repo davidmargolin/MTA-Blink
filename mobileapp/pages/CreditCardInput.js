@@ -76,7 +76,7 @@ class CreditCardInput extends Component {
 
         <View style={{marginTop: 25, height: 60, width: "100%", backgroundColor: '#3cba54', justifyContent: 'center'}}>
           <TouchableOpacity onPress={()=>this.purchase()}>
-            <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
+            <Text style={{color: 'white', fontWeight: 'bold', fontSize: 30, padding: 8, textAlign: 'center'}}>
               Finish Transaction
             </Text>
           </TouchableOpacity>

@@ -20,7 +20,7 @@ class PaymentSuccessful extends Component {
                     style={{width: '100%', height: 300}}
                     source={require('../images/payment-succeed.png')}
                   />
-                <Text style={{margin: 20, fontSize: 20, fontweight: 'bold', color: '#0ad12b,', textAlign: 'center'}}>
+                <Text style={{margin: 20, fontSize: 20, fontWeight: 'bold', color: '#0ad12b,', textAlign: 'center'}}>
                   Payment Succesful {"\n"} Thank you for choosing MTA!
                 </Text>
 
