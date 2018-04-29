@@ -28,7 +28,7 @@ class Header extends Component {
 
           {
             this.props.withLogOutButton &&
-            <TouchableOpacity style={{justifyContent: 'center', alignItems: 'flex-end', flex: 1, paddingRight: 10}}
+            <TouchableOpacity style={{position: 'absolute', flex: 1, width: 30, top: 10, right: 20}}
               onPress={() => firebase.auth().signOut()}
               >
               <Icon name='exit-to-app' color='white' size={36}/>
