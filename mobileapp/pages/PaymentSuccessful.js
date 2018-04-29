@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, Image, Keyboard, View, TextInput,KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import * as firebase from "firebase";
 import Header from '../components/Header'
-import {withNavigation} from 'react-navigation'
 
-class PaymentSuccessful extends Component {
+export default class PaymentSuccessful extends Component {
+  componentDidMount(){
+    setTimeout(this.endscreen,2000)
+  }
+
+  endscreen=()=>{
+    this.props.navigation.state.params.goBack()
+    this.props.navigation.goBack()
+  }
+
   render() {
     return (
       <View style={styles.container}>
-
-          <View style={{alignItems: 'center'}}>
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <Image
                 resizeMode="contain"
                 style={{width: '100%', height: 300}}
@@ -19,21 +26,11 @@ class PaymentSuccessful extends Component {
               Payment Succesful {"\n"} Thank you for choosing MTA!
             </Text>
           </View>
-
-
-         <View style={{position: 'absolute', bottom: 0, height: 60, width: "100%", backgroundColor: '#e09216', justifyContent: 'center'}}>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('HomeScreen')}>
-              <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
-                Go Back
-              </Text>
-            </TouchableOpacity>
-          </View>
       </View>
     )
   }
 }
 
-export default withNavigation(PaymentSuccessful);
 
 const styles = StyleSheet.create({
   container: {

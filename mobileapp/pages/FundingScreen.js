@@ -145,7 +145,9 @@ class FundingScreen extends Component {
         }
 
         <View style={{position: 'absolute', bottom: 0, height: 80, width: "100%", backgroundColor: '#73605b', justifyContent: 'center'}}>
-          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput', {balance: this.props.navigation.state.params.balance, payment_type: this.state.payment_type, fund_amount: this.state.fund_amount, time_amount: this.state.time_amount})}>
+          <TouchableOpacity onPress={()=>this.props.navigation.navigate('CreditCardInput', {balance: this.props.navigation.state.params.balance, payment_type: this.state.payment_type, fund_amount: this.state.fund_amount, time_amount: this.state.time_amount, goBack: () => {
+            this.props.navigation.goBack()
+          }})}>
             <Text style={{color: 'white', fontWeight: "bold", fontSize: 30, padding: 8, textAlign: 'center'}}>
               Purchase
             </Text>

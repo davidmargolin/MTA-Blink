@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, Image, Keyboard, View, TextInput,KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, Image, Keyboard, View, StatusBar, TextInput,KeyboardAvoidingView, ScrollView, TouchableOpacity } from 'react-native';
 import * as firebase from "firebase";
 
 
@@ -49,6 +49,10 @@ export default class LoginScreen extends Component {
         style={styles.container}
         behavior="padding"
         keyboardVerticalOffset={180}>
+        <StatusBar
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
             <Image
                 resizeMode="contain"
                 style={{width: '100%', height: 300}}

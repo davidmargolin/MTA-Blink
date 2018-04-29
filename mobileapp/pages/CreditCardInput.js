@@ -79,7 +79,10 @@ class CreditCardInput extends Component {
               else{
                 this.addTime(uid);
               }
-              this.props.navigation.navigate('PaymentSuccessful')
+              this.props.navigation.navigate('PaymentSuccessful', {goBack: () => {
+                this.props.navigation.state.params.goBack()
+                this.props.navigation.goBack()
+              }})
             }else{
               this.setState({errorText: "There was an error with your transaction. Please confirm your details and please try again."})
             }
