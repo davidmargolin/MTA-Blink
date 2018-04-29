@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: STATUSBAR_HEIGHT,
     alignItems: 'center',
-    backgroundColor:'#e09216',
+    backgroundColor:'#222',
   },
   back: {
     width: 24,
