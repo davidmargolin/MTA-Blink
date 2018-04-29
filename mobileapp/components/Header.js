@@ -16,6 +16,14 @@ class Header extends Component {
             barStyle="light-content"
           />
           {
+            this.props.withMenuButton &&
+            <TouchableOpacity style={{marginLeft: 14}}
+              onPress={() => this.props.openDrawer()}
+              >
+              <Icon name="dehaze" color="white" size={36}/>
+            </TouchableOpacity>
+          }
+          {
             this.props.withBackButton &&
             <TouchableOpacity
               onPress={() => this.props.navigation.goBack()}
