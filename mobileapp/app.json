@@ -1,5 +1,23 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "sdkVersion": "27.0.0",
+    "orientation": "portrait",
+    "icon":"./images/launcher.png",
+    "assetBundlePatterns": ["**/*"],
+    "slug": "mtablink",
+    "splash": {
+      "image": "./images/blink-logo-03.png",
+      "backgroundColor": "#0d213a",
+      "resizeMode": "contain"
+    },
+    "ios": {
+      "bundleIdentifier": "com.parse.mtablink",
+      "supportsTablet": true,
+      "buildNumber": "1.0.0",
+    },
+    "android": {
+      "package": "com.parse.mtablink",
+      "versionCode": 1
+    },
   }
 }
